@@ -1,0 +1,15 @@
+{
+  "name": "ee-currency",
+  "version": "1.0.0",
+  "description": "currency converter HTTP API",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "timothysugar@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "dinero.js": "^1.9.1",
+    "mocha": "^9.1.4"
+  }
+}
