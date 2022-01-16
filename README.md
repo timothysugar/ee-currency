@@ -20,6 +20,9 @@ USD to GBP rate example
 EUR to GBP rate example
 `$> curl 'localhost:3000/rate?from=EUR&to=GBP'`
 
+Sum EUR and GBP to CAD
+`$> curl -X POST 'localhost:3000/sum?to=CAD' -H 'Content-Type: application/json' -d '[{"amount":13.12,"currency":"EUR"},{"amount":99,"currency":"GBP"}]'`
+
 ### Running unit tests
 `$> npm t`
 
