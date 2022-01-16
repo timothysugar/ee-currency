@@ -7,14 +7,23 @@ const rateProvider = createRateProvider(dollarRates)
 context('currency', function () {
     [
         { from: 'USD', to: 'EUR', expected: 0.87815 },
-        { from: 'EUR', to: 'USD', expected: 1.1387576154415533  },
+        { from: 'EUR', to: 'USD', expected: 1.1387576154415533 },
         { from: 'USD', to: 'GBP', expected: 0.78569 }
     ].forEach(tc => {
-        const rates = rateProvider(tc)
         it(`should provide a rate from ${tc.from} to ${tc.to}`, function () {
-            const result = rates.getRate()
+            const result = rateProvider.getRate(tc)
 
             assert.strictEqual(result, tc.expected)
         })
+    })
+
+    it(`should sum monies of different currencies`, function () {
+        const to = 'CAD'
+        const monies = [{ amount: 13.12, currency: 'EUR' }, { amount: 99, currency: 'GBP'}]
+        const expected = { amount: 185.64, currency: 'CAD' }
+
+        const result = rateProvider.sum(to, monies)
+
+        assert.deepStrictEqual(result, expected)
     })
 })

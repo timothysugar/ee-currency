@@ -24,13 +24,24 @@ const createRateProvider = (dollarRates) => {
     const exchangeRates = createRates()
     console.log('built exchange rates', { exchangeRates })
 
-    return ({ from, to }) => {
-        return {
-            getRate: () => {
-                const rate = exchangeRates[from][to]
-                console.log('using rate', { from, to, rate })
-                return rate
-            }
+    return {
+        getRate: ({ from, to }) => {
+            const rate = exchangeRates[from][to]
+            console.log('using rate', { from, to, rate })
+            return rate
+        },
+        sum: (to, monies) => {
+            const total = monies
+                .reduce((prev, curr) => {
+                    const rate = exchangeRates[curr.currency][to]
+                    const amount = new Big(rate).times(curr.amount)
+                    return amount.add(prev)
+                }, 0)
+
+            const trucated = parseFloat(total.toFixed(2))
+
+            console.log('summed monies', { monies, total, trucated })
+            return { amount: trucated, currency: to }
         }
     }
 }

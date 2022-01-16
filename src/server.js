@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const Router = require('@koa/router')
 const logger = require('koa-logger')
+const koaBody = require('koa-body')
 const { createRateProvider } = require('./currency')
 const dollarRates = require('./rates.json')
 
@@ -10,8 +11,15 @@ const rateProvider = createRateProvider(dollarRates)
 
 router.get('/rate', (ctx, next) => {
     const { from, to } = ctx.query
-    const rate = rateProvider({from, to}).getRate()
+    const rate = rateProvider.getRate({ from, to })
     ctx.body = { rate };
+});
+
+router.post('/sum', koaBody(), (ctx, next) => {
+    const { to } = ctx.query
+    const monies = ctx.request.body
+    const sum = rateProvider.sum(to, monies)
+    ctx.body = sum;
 });
 
 app
