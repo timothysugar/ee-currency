@@ -1,3 +1,5 @@
+const Big = require('big.js')
+
 const createRateProvider = (dollarRates) => {
     const createRates = () => {
         const rates = {
@@ -8,11 +10,11 @@ const createRateProvider = (dollarRates) => {
 
         Object.entries(dollarRates).map(kv => {
             const [code, dollarRate] = kv
-            rates[code] = { 'USD': 1 / dollarRate }
+            rates[code] = { 'USD': new Big(1).div(dollarRate).toNumber() }
 
             codes.forEach(c => {
                 if (c === code) return
-                rates[code][c] = dollarRates[c] / dollarRate
+                rates[code][c] = new Big(dollarRates[c]).div(dollarRate).toNumber()
             })
         })
 

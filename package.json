@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@koa/router": "^10.1.1",
-    "dinero.js": "^1.9.1",
+    "big.js": "^6.1.1",
     "koa": "^2.13.4",
     "koa-logger": "^3.2.1"
   },
