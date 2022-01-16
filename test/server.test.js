@@ -1,4 +1,5 @@
 const chai = require('chai')
+const { assert } = chai
 const chaiHttp = require('chai-http');
 const { app } = require('../src/server')
 
@@ -10,15 +11,18 @@ context('API', function () {
     before(function() {
         server = app.listen()
     })
-    
+
     after(function() {
         server.close()
     })
 
     it('should return an exchange rate', async function () {
         const response = await chai.request(server)
-            .get('/')
+            .get('/rate')
+            .query({ from: 'EUR'})
+            .query({ to: 'USD'})
 
-        chai.assert(response.ok)
+        assert(response.ok)
+        assert.deepStrictEqual({ rate: 1.1387576154415533 }, response.body)
     })
 })

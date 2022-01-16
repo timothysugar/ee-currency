@@ -1,10 +1,23 @@
 const Koa = require('koa');
+const Router = require('@koa/router')
+const logger = require('koa-logger')
+const { createRateProvider } = require('./currency')
+const dollarRates = require('./rates.json')
 
 const app = new Koa();
+const router = new Router();
+const rateProvider = createRateProvider(dollarRates)
 
-app.use(async ctx => {
-    ctx.body = 'Hello World';
+router.get('/rate', (ctx, next) => {
+    const { from, to } = ctx.query
+    const rate = rateProvider({from, to}).getRate()
+    ctx.body = { rate };
 });
+
+app
+    .use(logger())
+    .use(router.routes())
+    .use(router.allowedMethods());
 
 module.exports = {
     app

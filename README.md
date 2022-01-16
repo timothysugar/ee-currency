@@ -10,6 +10,16 @@ node 16
 ### Running locally
 `$> node src/index.js`
 
-### Running the tests
+### Using the API
+EUR to USD rate example
+`$> curl 'localhost:3000/rate?from=EUR&to=USD'`
+
+USD to GBP rate example
+`$> curl 'localhost:3000/rate?from=USD&to=GBP'`
+
+EUR to GBP rate example
+`$> curl 'localhost:3000/rate?from=EUR&to=GBP'`
+
+### Running unit tests
 `$> npm t`
 

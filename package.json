@@ -9,10 +9,14 @@
   "author": "timothysugar@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "chai": "^4.3.4",
-    "chai-http": "^4.3.0",
+    "@koa/router": "^10.1.1",
     "dinero.js": "^1.9.1",
     "koa": "^2.13.4",
+    "koa-logger": "^3.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
     "mocha": "^9.1.4"
   }
 }
