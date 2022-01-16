@@ -1,8 +1,8 @@
 const assert = require('assert')
 const dollarRates = require('./testRates.json')
-const { createRateProvider } = require('../src/currency')
+const { createConverter } = require('../src/currency')
 
-const rateProvider = createRateProvider(dollarRates)
+const currency = createConverter(dollarRates)
 
 context('currency', function () {
     [
@@ -11,7 +11,7 @@ context('currency', function () {
         { from: 'USD', to: 'GBP', expected: 0.78569 }
     ].forEach(tc => {
         it(`should provide a rate from ${tc.from} to ${tc.to}`, function () {
-            const result = rateProvider.getRate(tc)
+            const result = currency.getRate(tc)
 
             assert.strictEqual(result, tc.expected)
         })
@@ -22,7 +22,7 @@ context('currency', function () {
         const monies = [{ amount: 13.12, currency: 'EUR' }, { amount: 99, currency: 'GBP'}]
         const expected = { amount: 185.64, currency: 'CAD' }
 
-        const result = rateProvider.sum(to, monies)
+        const result = currency.sum(to, monies)
 
         assert.deepStrictEqual(result, expected)
     })

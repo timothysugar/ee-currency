@@ -1,6 +1,6 @@
 const Big = require('big.js')
 
-const createRateProvider = (dollarRates) => {
+const createConverter = (dollarRates) => {
     const createRates = () => {
         const rates = {
             'USD': dollarRates
@@ -40,12 +40,12 @@ const createRateProvider = (dollarRates) => {
 
             const trucated = parseFloat(total.toFixed(2))
 
-            console.log('summed monies', { monies, total, trucated })
+            console.log('summed monies', { monies, total: total.toNumber(), trucated })
             return { amount: trucated, currency: to }
         }
     }
 }
 
 module.exports = {
-    createRateProvider
+    createConverter
 }
