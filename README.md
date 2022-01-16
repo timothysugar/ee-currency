@@ -11,16 +11,16 @@ node 16
 `$> node src/index.js`
 
 ### Using the API
-EUR to USD rate example
+#### EUR to USD rate example
 `$> curl 'localhost:3000/rate?from=EUR&to=USD'`
 
-USD to GBP rate example
+#### USD to GBP rate example
 `$> curl 'localhost:3000/rate?from=USD&to=GBP'`
 
-EUR to GBP rate example
+#### EUR to GBP rate example
 `$> curl 'localhost:3000/rate?from=EUR&to=GBP'`
 
-Sum EUR and GBP to CAD
+#### Sum EUR and GBP to CAD
 `$> curl -X POST 'localhost:3000/sum?to=CAD' -H 'Content-Type: application/json' -d '[{"amount":13.12,"currency":"EUR"},{"amount":99,"currency":"GBP"}]'`
 
 ### Running unit tests
