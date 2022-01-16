@@ -30,9 +30,9 @@ context('API', function () {
         const response = await chai.request(server)
             .post('/sum')
             .query({ to: 'CAD' })
-            .send([ { amount: 1.00, currency: 'USD'}, { amount: 2.50, currency: 'EUR'}])
+            .send([ { amount: 13.12, currency: 'EUR'}, { amount: 99, currency: 'GBP'}])
 
         assert(response.ok)
-        assert.deepStrictEqual({ amount: 1.1387576154415533, currency: 'CAD' }, response.body)
+        assert.deepStrictEqual({ amount: 185.64, currency: 'CAD' }, response.body)
     })
 })
