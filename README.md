@@ -14,11 +14,11 @@ node 16
 #### EUR to USD rate example
 `$> curl 'localhost:3000/rate?from=EUR&to=USD'`
 
-#### USD to GBP rate example
-`$> curl 'localhost:3000/rate?from=USD&to=GBP'`
+#### USD to GBP convert example
+`$> curl -X POST 'localhost:3000/convert?to=GBP' -H 'Content-Type: application/json' -d '{"amount":13.12,"currency":"USD"}'`
 
-#### EUR to GBP rate example
-`$> curl 'localhost:3000/rate?from=EUR&to=GBP'`
+#### EUR to GBP convert example
+`$> curl -X POST 'localhost:3000/convert?to=GBP' -H 'Content-Type: application/json' -d '{"amount":13.12,"currency":"EUR"}'`
 
 #### Sum EUR and GBP to CAD
 `$> curl -X POST 'localhost:3000/sum?to=CAD' -H 'Content-Type: application/json' -d '[{"amount":13.12,"currency":"EUR"},{"amount":99,"currency":"GBP"}]'`

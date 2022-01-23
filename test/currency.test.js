@@ -17,6 +17,16 @@ context('currency', function () {
         })
     })
 
+    it(`should convert money to a different currency`, function () {
+        const to = 'CAD'
+        const money = { amount: 13.12, currency: 'EUR' }
+        const expected = { amount: 19.68, currency: 'CAD' }
+
+        const result = currency.convert(to, money)
+
+        assert.deepStrictEqual(result, expected)
+    })
+
     it(`should sum monies of different currencies`, function () {
         const to = 'CAD'
         const monies = [{ amount: 13.12, currency: 'EUR' }, { amount: 99, currency: 'GBP'}]

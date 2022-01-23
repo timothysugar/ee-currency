@@ -30,6 +30,15 @@ const createConverter = (dollarRates) => {
             console.log('using rate', { from, to, rate })
             return rate
         },
+        convert: (to, money) => {
+            const rate = exchangeRates[money.currency][to]
+            const amount = new Big(rate).times(money.amount)
+
+            const trucated = parseFloat(amount.toFixed(2))
+
+            console.log('converted money', { money, amount: amount.toNumber(), trucated })
+            return { amount: trucated, currency: to }
+        },
         sum: (to, monies) => {
             const total = monies
                 .reduce((prev, curr) => {

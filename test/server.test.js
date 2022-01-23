@@ -26,6 +26,16 @@ context('API', function () {
         assert.deepStrictEqual({ rate: 1.1387576154415533 }, response.body)
     })
 
+    it('should return a converted money', async function () {
+        const response = await chai.request(server)
+            .post('/convert')
+            .query({ to: 'CAD' })
+            .send({ amount: 13.12, currency: 'EUR'})
+
+        assert(response.ok)
+        assert.deepStrictEqual({ amount: 19.68, currency: 'CAD' }, response.body)
+    })
+
     it('should sum monies of different currencies', async function () {
         const response = await chai.request(server)
             .post('/sum')

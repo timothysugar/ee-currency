@@ -15,6 +15,13 @@ router.get('/rate', (ctx, next) => {
     ctx.body = { rate };
 });
 
+router.post('/convert', koaBody(), (ctx, next) => {
+    const { to } = ctx.query
+    const money = ctx.request.body
+    const sum = rateProvider.convert(to, money)
+    ctx.body = sum;
+});
+
 router.post('/sum', koaBody(), (ctx, next) => {
     const { to } = ctx.query
     const monies = ctx.request.body
